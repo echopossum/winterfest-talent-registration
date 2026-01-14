@@ -1,4 +1,4 @@
-import { pgTable, serial, varchar, uuid, pgEnum, integer } from 'drizzle-orm/pg-core';
+import { pgTable, serial, varchar, pgEnum, integer } from 'drizzle-orm/pg-core';
 
 export const roles = pgEnum('roles', ['admin', 'judge', 'guest']);
 
