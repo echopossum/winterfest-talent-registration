@@ -46,6 +46,7 @@
 		"vite-plugin-devtools-json": "^1.0.0"
 	},
 	"dependencies": {
+		"daisyui": "^5.5.14",
 		"postgres": "^3.4.7"
 	}
 }
