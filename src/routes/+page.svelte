@@ -2,56 +2,73 @@
 	import { registerTalent } from './data.remote';
 </script>
 
-<form {...registerTalent}>
-	<label class="floating-label">
-		<input class="input" placeholder="First Name" {...registerTalent.fields.firstName.as('text')} />
-		<span>First Name</span>
-		{#each registerTalent.fields.issues() as issue (issue.message)}
-			<p>{issue.message}</p>
-		{/each}
-	</label>
-	<label class="floating-label">
-		<input class="input" placeholder="Last Name" {...registerTalent.fields.lastName.as('text')} />
-		<span>Last Name</span>
-		{#each registerTalent.fields.issues() as issue (issue.message)}
-			<p>{issue.message}</p>
-		{/each}
-	</label>
-	<label class="floating-label">
-		<input class="input" placeholder="Email" {...registerTalent.fields.email.as('email')} />
-		<span>Email</span>
-		{#each registerTalent.fields.issues() as issue (issue.message)}
-			<p>{issue.message}</p>
-		{/each}
-	</label>
-	<label class="floating-label">
-		<input
-			class="input"
-			placeholder="Phone Number"
-			{...registerTalent.fields.phoneNumber.as('tel')}
-		/>
-		<span>Phone Number</span>
-		{#each registerTalent.fields.issues() as issue (issue.message)}
-			<p>{issue.message}</p>
-		{/each}
-	</label>
-	<label class="floating-label">
-		<input class="input" placeholder="Unit Type" {...registerTalent.fields.unitType.as('text')} />
-		<span>Phone Number</span>
-		{#each registerTalent.fields.issues() as issue (issue.message)}
-			<p>{issue.message}</p>
-		{/each}
-	</label>
-	<label class="floating-label">
-		<input
-			class="input"
-			placeholder="Unit Number"
-			{...registerTalent.fields.unitNumber.as('text')}
-		/>
-		<span>Unit Number</span>
-		{#each registerTalent.fields.issues() as issue (issue.message)}
-			<p>{issue.message}</p>
-		{/each}
-	</label>
-	<button type="submit" class="btn btn-primary">Submit</button>
-</form>
+<div class="flex h-screen w-screen flex-col items-center justify-center gap-5">
+	<h1>Talent Show Reg</h1>
+	<form
+		class="fieldset flex w-lg flex-col items-center justify-center rounded-box bg-base-300 p-4"
+		{...registerTalent}
+	>
+		<fieldset class="fieldset">
+			<label class="label text-lg" for="firstName">First Name:</label>
+			<input
+				class="validator input w-md"
+				{...registerTalent.fields.firstName.as('text')}
+				required
+				id="firstName"
+			/>
+			<div class="validator-hint hidden">First Name is Required</div>
+		</fieldset>
+		<fieldset class="fieldset">
+			<label class="label text-lg" for="lastName">Last Name:</label>
+			<input
+				class="validator input w-md"
+				{...registerTalent.fields.lastName.as('text')}
+				required
+				id="lastName"
+			/>
+			<div class="validator-hint hidden">Last Name is Required</div>
+		</fieldset>
+		<fieldset class="fieldset">
+			<label class="label text-lg" for="email">Email:</label>
+			<input
+				class="validator input w-md"
+				{...registerTalent.fields.email.as('email')}
+				required
+				id="email"
+			/>
+			<div class="validator-hint hidden">Email is Required</div>
+		</fieldset>
+		<fieldset class="fieldset">
+			<label class="label text-lg" for="phone">Phone Number:</label>
+			<input
+				class="validator input w-md"
+				{...registerTalent.fields.phoneNumber.as('tel')}
+				required
+				id="phone"
+			/>
+			<div class="validator-hint hidden">Phone number is Required</div>
+		</fieldset>
+		<fieldset class="fieldset">
+			<label class="label text-lg" for="unitType">Unit Type:</label>
+			<select
+				class="validator input w-md"
+				id="unitType"
+				{...registerTalent.fields.unitType.as('select')}
+			>
+				{#each ['Post', 'Crew', 'Ship', 'Troop', 'Other'] as unit (unit)}
+					<option>{unit}</option>
+				{/each}
+			</select>
+			<div class="validator-hint hidden">Unit type is required</div>
+		</fieldset>
+		<fieldset class="fieldset">
+			<label class="label text-lg" for="unitNumber">Unit Number:</label>
+			<input
+				class=" input w-md"
+				{...registerTalent.fields.unitNumber.as('number')}
+				id="unitNumber"
+			/>
+		</fieldset>
+		<button class="btn mt-4 w-sm rounded-box btn-primary">Register</button>
+	</form>
+</div>

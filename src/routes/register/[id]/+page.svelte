@@ -21,8 +21,9 @@
 </script>
 
 <div class="success-container">
-	<h1>Your number is {number}!</h1>
+	<h1>Your contestant number is {number}</h1>
 	<p>You have successfully registered for the talent show.</p>
+	<p>Please remain in the area and proceed behind the stage when your number is called</p>
 	<p>Redirecting to registration in {countdown} seconds...</p>
 	<button class="btn btn-primary" onclick={() => goto(resolve('/'))}> Go Back Now </button>
 </div>

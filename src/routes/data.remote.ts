@@ -25,7 +25,7 @@ export const registerTalent = form(
 		),
 		phoneNumber: v.pipe(v.string(), v.nonEmpty('Please enter your phone number')),
 		unitType: v.pipe(v.string()),
-		unitNumber: v.pipe(v.string(), v.toNumber())
+		unitNumber: v.pipe(v.number())
 	}),
 	async ({ firstName, lastName, email, phoneNumber, unitType, unitNumber }) => {
 		console.log('we got here');
