@@ -9,7 +9,7 @@
 		{...registerTalent}
 	>
 		<fieldset class="fieldset">
-			<label class="label text-lg" for="firstName">First Name:</label>
+			<label class="label text-lg" for="firstName">*First Name:</label>
 			<input
 				class="validator input w-md"
 				{...registerTalent.fields.firstName.as('text')}
@@ -19,7 +19,7 @@
 			<div class="validator-hint hidden">First Name is Required</div>
 		</fieldset>
 		<fieldset class="fieldset">
-			<label class="label text-lg" for="lastName">Last Name:</label>
+			<label class="label text-lg" for="lastName">*Last Name:</label>
 			<input
 				class="validator input w-md"
 				{...registerTalent.fields.lastName.as('text')}
@@ -29,7 +29,7 @@
 			<div class="validator-hint hidden">Last Name is Required</div>
 		</fieldset>
 		<fieldset class="fieldset">
-			<label class="label text-lg" for="email">Email:</label>
+			<label class="label text-lg" for="email">*Email:</label>
 			<input
 				class="validator input w-md"
 				{...registerTalent.fields.email.as('email')}
@@ -39,7 +39,7 @@
 			<div class="validator-hint hidden">Email is Required</div>
 		</fieldset>
 		<fieldset class="fieldset">
-			<label class="label text-lg" for="phone">Phone Number:</label>
+			<label class="label text-lg" for="phone">*Phone Number:</label>
 			<input
 				class="validator input w-md"
 				{...registerTalent.fields.phoneNumber.as('tel')}
@@ -50,16 +50,11 @@
 		</fieldset>
 		<fieldset class="fieldset">
 			<label class="label text-lg" for="unitType">Unit Type:</label>
-			<select
-				class="validator input w-md"
-				id="unitType"
-				{...registerTalent.fields.unitType.as('select')}
-			>
+			<select class=" input w-md" id="unitType" {...registerTalent.fields.unitType.as('select')}>
 				{#each ['Post', 'Crew', 'Ship', 'Troop', 'Other'] as unit (unit)}
 					<option>{unit}</option>
 				{/each}
 			</select>
-			<div class="validator-hint hidden">Unit type is required</div>
 		</fieldset>
 		<fieldset class="fieldset">
 			<label class="label text-lg" for="unitNumber">Unit Number:</label>
