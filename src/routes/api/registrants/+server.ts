@@ -23,7 +23,10 @@ export async function POST({ request }) {
 			.returning();
 		console.log(reg[0]);
 		return json(reg[0]);
-	} catch (err) {
-		error(409, err.cause.detail);
+	} catch (errorMessage) {
+		if (errorMessage instanceof Error) {
+			error(409, errorMessage);
+		}
+		error(409, String(errorMessage));
 	}
 }
