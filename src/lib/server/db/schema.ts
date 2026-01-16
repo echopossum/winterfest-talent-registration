@@ -15,9 +15,9 @@ export const registrant = pgTable('registrant', {
 	id: serial('id').primaryKey(),
 	firstName: varchar('first_name').notNull(),
 	lastName: varchar('last_name').notNull(),
-	email: varchar('email').notNull(),
+	email: varchar('email').notNull().unique(),
 	phoneNumber: varchar('phone_number').notNull(),
-	unitType: unitType('unit_type').notNull(),
+	unitType: varchar('unit_type'),
 	unitNumber: integer().notNull()
 });
 
