@@ -23,7 +23,9 @@ export const registrant = pgTable('registrant', {
 
 export const score = pgTable('score', {
 	id: serial('id').primaryKey(),
-	participant: serial('participant').references(() => registrant.id),
+	participant: integer('participant')
+		.notNull()
+		.references(() => registrant.id),
 	originality: integer('originality').notNull(),
 	entertainmentValue: integer('entertainment_value').notNull(),
 	audienceAppeal: integer('audience_appeal').notNull(),
