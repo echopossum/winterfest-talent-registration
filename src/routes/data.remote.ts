@@ -1,6 +1,6 @@
 import { form, query } from '$app/server';
 import { db } from '$lib/server/db';
-import { registrant } from '$lib/server/db/schema';
+import { registrant, score } from '$lib/server/db/schema';
 import { redirect } from '@sveltejs/kit';
 import * as v from 'valibot';
 
@@ -10,7 +10,7 @@ export const getRegistrants = query(async () => {
 });
 
 export const getActs = query(async () => {
-	const acts = await db.query.act.findMany();
+	const acts = await db.query.score.findMany();
 	return acts;
 });
 
@@ -25,10 +25,20 @@ export const registerTalent = form(
 		),
 		phoneNumber: v.pipe(v.string(), v.nonEmpty('Please enter your phone number')),
 		unitType: v.pipe(v.string()),
-		unitNumber: v.pipe(v.number())
+		unitNumber: v.pipe(v.number()),
+		additionalMembers: v.string(),
+		description: v.string()
 	}),
-	async ({ firstName, lastName, email, phoneNumber, unitType, unitNumber }) => {
-		console.log('we got here');
+	async ({
+		firstName,
+		lastName,
+		email,
+		phoneNumber,
+		unitType,
+		unitNumber,
+		additionalMembers,
+		description
+	}) => {
 		const registered = await db
 			.insert(registrant)
 			.values({
@@ -37,17 +47,71 @@ export const registerTalent = form(
 				email,
 				phoneNumber,
 				unitType,
-				unitNumber
+				unitNumber,
+				additionalMembers,
+				description
 			})
 			.returning();
 
 		if (registered) {
-			console.log('we did it');
 			console.log(registered[0]);
 			redirect(303, `/register/${registered[0].id}`);
-			setTimeout(() => {
-				redirect(303, '/');
-			}, 5000);
+		}
+	}
+);
+
+export const scoreTalent = form(
+	v.object({
+		participant: v.pipe(v.string(), v.transform(Number), v.number()),
+		comment: v.string(),
+		originality: v.pipe(
+			v.picklist(['1', '2', '3', '4', '5', '6', '7', '8', '9', '10']),
+			v.transform(Number)
+		),
+		entertainmentValue: v.pipe(
+			v.picklist(['1', '2', '3', '4', '5', '6', '7', '8', '9', '10']),
+			v.transform(Number)
+		),
+		audienceAppeal: v.pipe(
+			v.picklist(['1', '2', '3', '4', '5', '6', '7', '8', '9', '10']),
+			v.transform(Number)
+		),
+		skillLevel: v.pipe(
+			v.picklist(['1', '2', '3', '4', '5', '6', '7', '8', '9', '10']),
+			v.transform(Number)
+		),
+		aestheticAppeal: v.pipe(
+			v.picklist(['1', '2', '3', '4', '5', '6', '7', '8', '9', '10']),
+			v.transform(Number)
+		),
+		judgesChoice: v.pipe(v.picklist(['1', '2', '3', '4', '5']), v.transform(Number))
+	}),
+	async ({
+		participant,
+		comment,
+		originality,
+		entertainmentValue,
+		audienceAppeal,
+		skillLevel,
+		aestheticAppeal,
+		judgesChoice
+	}) => {
+		const scored = await db
+			.insert(score)
+			.values({
+				participant,
+				comment,
+				originality,
+				entertainmentValue,
+				audienceAppeal,
+				skillLevel,
+				aestheticAppeal,
+				judgesChoice
+			})
+			.returning();
+
+		if (scored) {
+			console.log(scored[0]);
 		}
 	}
 );

@@ -64,6 +64,22 @@
 				id="unitNumber"
 			/>
 		</fieldset>
+		<fieldset class="fieldset">
+			<label class="label text-lg" for="additionalMembers">Additional Members:</label>
+			<textarea
+				class="input h-30 w-md resize-none"
+				id="additionalMembers"
+				{...registerTalent.fields.additionalMembers.as('text')}
+			></textarea>
+		</fieldset>
+		<fieldset class="fieldset">
+			<label class="label text-lg" for="description">Act Description:</label>
+			<textarea
+				class="input h-30 w-md resize-none"
+				id="description"
+				{...registerTalent.fields.description.as('text')}
+			></textarea>
+		</fieldset>
 		<button class="btn mt-4 w-sm rounded-box btn-primary">Register</button>
 	</form>
 </div>
