@@ -1,4 +1,4 @@
-import { pgTable, serial, varchar, pgEnum, integer } from 'drizzle-orm/pg-core';
+import { pgTable, serial, varchar, pgEnum, integer, boolean } from 'drizzle-orm/pg-core';
 
 export const roles = pgEnum('roles', ['admin', 'judge', 'guest']);
 
@@ -18,14 +18,15 @@ export const registrant = pgTable('registrant', {
 	additionalMembers: varchar('additional_members'),
 	unitType: varchar('unit_type'),
 	unitNumber: integer().notNull(),
-	description: varchar('description')
+	description: varchar('description'),
+	performed: boolean('performed').notNull().default(false)
 });
 
 export const score = pgTable('score', {
 	id: serial('id').primaryKey(),
 	participant: integer('participant')
 		.notNull()
-		.references(() => registrant.id),
+		.references(() => registrant.id, { onDelete: 'cascade' }),
 	originality: integer('originality').notNull(),
 	entertainmentValue: integer('entertainment_value').notNull(),
 	audienceAppeal: integer('audience_appeal').notNull(),
