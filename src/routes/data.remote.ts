@@ -62,29 +62,56 @@ export const registerTalent = form(
 
 export const scoreTalent = form(
 	v.object({
-		participant: v.pipe(v.string(), v.transform(Number), v.number()),
-		comment: v.string(),
+		participant: v.pipe(
+			v.string(),
+			v.nonEmpty('Please select a participant'),
+			v.transform(Number),
+			v.number()
+		),
+		comment: v.pipe(v.optional(v.string())),
 		originality: v.pipe(
-			v.picklist(['1', '2', '3', '4', '5', '6', '7', '8', '9', '10']),
-			v.transform(Number)
+			v.picklist(['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'], 'Originality score required'),
+			v.transform(Number),
+			v.integer(),
+			v.minValue(1),
+			v.maxValue(10)
 		),
 		entertainmentValue: v.pipe(
 			v.picklist(['1', '2', '3', '4', '5', '6', '7', '8', '9', '10']),
-			v.transform(Number)
+			v.transform(Number),
+			v.integer(),
+			v.minValue(1),
+			v.maxValue(10)
 		),
 		audienceAppeal: v.pipe(
 			v.picklist(['1', '2', '3', '4', '5', '6', '7', '8', '9', '10']),
-			v.transform(Number)
+			v.transform(Number),
+			v.integer(),
+			v.minValue(1),
+			v.maxValue(10)
 		),
 		skillLevel: v.pipe(
 			v.picklist(['1', '2', '3', '4', '5', '6', '7', '8', '9', '10']),
-			v.transform(Number)
+			v.transform(Number),
+			v.integer(),
+			v.minValue(1),
+			v.maxValue(10)
 		),
 		aestheticAppeal: v.pipe(
 			v.picklist(['1', '2', '3', '4', '5', '6', '7', '8', '9', '10']),
-			v.transform(Number)
+			v.transform(Number),
+			v.integer(),
+			v.minValue(1),
+			v.maxValue(10)
 		),
-		judgesChoice: v.pipe(v.picklist(['1', '2', '3', '4', '5']), v.transform(Number))
+		judgesChoice: v.pipe(
+			v.optional(v.picklist(['0', '1', '2', '3', '4', '5'])),
+			v.transform((value) => Number(value ?? 0)),
+			v.number(),
+			v.integer(),
+			v.minValue(0),
+			v.maxValue(5)
+		)
 	}),
 	async ({
 		participant,
