@@ -1,6 +1,7 @@
 import { form, query } from '$app/server';
 import { db } from '$lib/server/db';
 import { registrant, score } from '$lib/server/db/schema';
+import { broadcast } from '$lib/server/events';
 import { redirect } from '@sveltejs/kit';
 import * as v from 'valibot';
 
@@ -55,6 +56,7 @@ export const registerTalent = form(
 
 		if (registered) {
 			console.log(registered[0]);
+			broadcast('refresh', {});
 			redirect(303, `/register/${registered[0].id}`);
 		}
 	}
@@ -139,6 +141,7 @@ export const scoreTalent = form(
 
 		if (scored) {
 			console.log(scored[0]);
+			broadcast('refresh', {});
 		}
 	}
 );

@@ -1,7 +1,15 @@
 <script lang="ts">
-	// import { onMount } from 'svelte';
+	import { onMount } from 'svelte';
 	import { getLeaderboard } from './leaderboard.remote';
-	// import { invalidateAll } from '$app/navigation';
+	import { invalidateAll } from '$app/navigation';
+
+	onMount(() => {
+		const eventSource = new EventSource('/api/events/leaderboard');
+		eventSource.addEventListener('refresh', () => {
+			console.log('we got here');
+			invalidateAll();
+		});
+	});
 
 	// onMount(async () => {
 	// 	setInterval(() => {
