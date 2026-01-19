@@ -32,6 +32,6 @@ export const score = pgTable('score', {
 	audienceAppeal: integer('audience_appeal').notNull(),
 	skillLevel: integer('skill_level').notNull(),
 	aestheticAppeal: integer('aesthetic_appeal').notNull(),
-	judgesChoice: integer('judges_choice').notNull(),
+	judgesChoice: integer('judges_choice').notNull().default(0),
 	comment: varchar('comment')
 });
