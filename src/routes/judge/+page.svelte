@@ -2,7 +2,7 @@
 	import { getRegistrants, scoreTalent } from '../data.remote';
 	const registrants = await getRegistrants();
 	const options = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-	const judgesChoiceOptions = [1, 2, 3, 4, 5];
+	const judgesChoiceOptions = [0, 1, 2, 3, 4, 5];
 </script>
 
 <div class="flex h-screen w-screen flex-col items-center justify-center gap-5">
@@ -31,7 +31,8 @@
 				{#each options as n (n)}
 					<div>
 						<input
-							class="radio radio-sm radio-primary"
+							required
+							class="validator radio radio-sm radio-primary"
 							{...scoreTalent.fields.originality.as('radio', String(n))}
 						/>
 						<span class="pl-0.5">{n}</span>
@@ -49,6 +50,7 @@
 				{#each options as n (n)}
 					<div>
 						<input
+							required
 							class="radio radio-sm radio-primary"
 							{...scoreTalent.fields.entertainmentValue.as('radio', String(n))}
 						/>
@@ -67,6 +69,7 @@
 				{#each options as n (n)}
 					<div>
 						<input
+							required
 							class="radio radio-sm radio-primary"
 							{...scoreTalent.fields.audienceAppeal.as('radio', String(n))}
 						/>
@@ -85,6 +88,7 @@
 				{#each options as n (n)}
 					<div>
 						<input
+							required
 							class="radio radio-sm radio-primary"
 							{...scoreTalent.fields.skillLevel.as('radio', String(n))}
 						/>
@@ -103,6 +107,7 @@
 				{#each options as n (n)}
 					<div>
 						<input
+							required
 							class="radio radio-sm radio-primary"
 							{...scoreTalent.fields.aestheticAppeal.as('radio', String(n))}
 						/>
