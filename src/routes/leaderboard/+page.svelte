@@ -1,5 +1,13 @@
 <script lang="ts">
+	// import { onMount } from 'svelte';
 	import { getLeaderboard } from './leaderboard.remote';
+	// import { invalidateAll } from '$app/navigation';
+
+	// onMount(async () => {
+	// 	setInterval(() => {
+	// 		invalidateAll();
+	// 	}, 10000);
+	// });
 </script>
 
 <svelte:boundary>
