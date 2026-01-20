@@ -57,6 +57,7 @@ export const registerTalent = form(
 		if (registered) {
 			console.log(registered[0]);
 			broadcast('refresh', {});
+			broadcast('stageRefresh', {});
 			redirect(303, `/register/${registered[0].id}`);
 		}
 	}

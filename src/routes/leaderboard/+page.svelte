@@ -4,9 +4,8 @@
 	import { invalidateAll } from '$app/navigation';
 
 	onMount(() => {
-		const eventSource = new EventSource('/api/events/leaderboard');
+		const eventSource = new EventSource('/api/events');
 		eventSource.addEventListener('refresh', () => {
-			console.log('we got here');
 			invalidateAll();
 		});
 	});
