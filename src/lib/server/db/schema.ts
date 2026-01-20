@@ -1,3 +1,4 @@
+import { relations } from 'drizzle-orm';
 import { pgTable, serial, varchar, pgEnum, integer, boolean } from 'drizzle-orm/pg-core';
 
 export const roles = pgEnum('roles', ['admin', 'judge', 'guest']);
@@ -35,3 +36,14 @@ export const score = pgTable('score', {
 	judgesChoice: integer('judges_choice').notNull().default(0),
 	comment: varchar('comment')
 });
+
+export const registrantRelations = relations(registrant, ({ many }) => ({
+	score: many(score)
+}));
+
+export const scoreRelations = relations(score, ({ one }) => ({
+	participant: one(registrant, {
+		fields: [score.participant],
+		references: [registrant.id]
+	})
+}));
