@@ -143,6 +143,7 @@ export const scoreTalent = form(
 		if (scored) {
 			console.log(scored[0]);
 			broadcast('refresh', {});
+			redirect(303, '/judge/submit');
 		}
 	}
 );
