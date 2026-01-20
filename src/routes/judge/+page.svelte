@@ -1,5 +1,6 @@
 <script lang="ts">
-	import { getRegistrants, scoreTalent } from '../data.remote';
+	import { getRegistrants } from '../data.remote';
+	import { scoreTalent } from './judge.remote';
 	const registrants = await getRegistrants();
 	const options = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 	const judgesChoiceOptions = [0, 1, 2, 3, 4, 5];
