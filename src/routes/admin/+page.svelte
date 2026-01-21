@@ -3,8 +3,5 @@
 </script>
 
 <svelte:boundary>
-	{#each await getRegistrants() as registrant (registrant.id)}
-		<h1>{registrant.firstName}</h1>
-		<h1>{registrant.lastName}</h1>
-	{/each}
+	{#each await getRegistrants() as registrant (registrant.id)}{/each}
 </svelte:boundary>
