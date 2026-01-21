@@ -20,12 +20,12 @@
 				class:opacity-60={slot.performed}
 			>
 				<div
-					class="flex gap-10 text-lg"
+					class="flex gap-10 pl-4 text-lg"
 					class:line-through={slot.performed}
 					class:text-gray-400={slot.performed}
 				>
 					<div>Number: {slot.id}</div>
-					<div class="w-sm">{slot.firstName} {slot.lastName}</div>
+					<div class="w-xs">{slot.firstName} {slot.lastName}</div>
 					<div>{slot.unitType} {slot.unitNumber}</div>
 				</div>
 				<div
@@ -35,7 +35,7 @@
 				>
 					{slot.description}
 				</div>
-				<div>
+				<div class="flex justify-center gap-2 p-2">
 					<button
 						type="button"
 						class="btn btn-soft btn-error"
