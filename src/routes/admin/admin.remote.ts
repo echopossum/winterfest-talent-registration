@@ -1,6 +1,7 @@
 import { command, form, query } from '$app/server';
 import { db } from '$lib/server/db';
 import { registrant, score } from '$lib/server/db/schema';
+import { broadcast } from '$lib/server/events';
 import { eq } from 'drizzle-orm';
 import * as v from 'valibot';
 
@@ -19,6 +20,7 @@ export const deleteRegistrant = command(
 	async ({ registrantId }) => {
 		const deleted = await db.delete(registrant).where(eq(registrant.id, registrantId)).returning();
 		console.log(deleted);
+		broadcast('refresh', {});
 	}
 );
 
