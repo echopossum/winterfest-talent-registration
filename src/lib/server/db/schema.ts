@@ -1,4 +1,4 @@
-import { relations } from 'drizzle-orm';
+import { relations, type InferSelectModel } from 'drizzle-orm';
 import { pgTable, serial, varchar, pgEnum, integer, boolean } from 'drizzle-orm/pg-core';
 
 export const roles = pgEnum('roles', ['admin', 'judge', 'guest']);
@@ -47,3 +47,6 @@ export const scoreRelations = relations(score, ({ one }) => ({
 		references: [registrant.id]
 	})
 }));
+
+export type Registrant = InferSelectModel<typeof registrant>;
+export type Score = InferSelectModel<typeof score>;
