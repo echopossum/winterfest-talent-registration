@@ -60,16 +60,27 @@
 				class="flex items-center justify-start gap-4 p-0.5 pr-2 odd:bg-blue-950 even:bg-blue-600"
 			>
 				<div class="w-8"></div>
-				<p class="w-32">Originality: {score.originality}</p>
-				<p class="w-32">Entertainment: {score.entertainmentValue}</p>
-				<p class="w-42">Audience Appeal: {score.audienceAppeal}</p>
-				<p class="w-32">Skill Level: {score.skillLevel}</p>
-				<p class="w-42">Aesthetic Appeal: {score.aestheticAppeal}</p>
-				<p class="w-32">Judges Choice: {score.judgesChoice}</p>
-				<p class="grow">Comments: {score.comment}</p>
+				<p>Originality: {score.originality}</p>
+				<p>Entertainment: {score.entertainmentValue}</p>
+				<p>Audience Appeal: {score.audienceAppeal}</p>
+				<p>Skill Level: {score.skillLevel}</p>
+				<p>Aesthetic Appeal: {score.aestheticAppeal}</p>
+				<p class="w-32 grow">Judges Choice: {score.judgesChoice}</p>
 				<div class="flex justify-center gap-2 p-0.5">
-					<button class="btn btn-soft btn-xs btn-info">Edit</button>
-					<button class="btn btn-soft btn-xs btn-error">Delete</button>
+					<button
+						class="btn btn-soft btn-xs btn-info"
+						onclick={() => {
+							scoreHolding = score;
+							scoreEditModal.showModal();
+						}}>Edit</button
+					>
+					<button
+						class="btn btn-soft btn-xs btn-error"
+						onclick={() => {
+							scoreHolding = score;
+							deleteScoreModal.showModal();
+						}}>Delete</button
+					>
 				</div>
 			</div>
 		{/each}
