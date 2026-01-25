@@ -86,7 +86,6 @@ export const editScore = form(
     skillLevel: v.optional(v.number()),
     aestheticAppeal: v.optional(v.number()),
     judgesChoice: v.optional(v.number()),
-    comment: v.optional(v.string())
   }),
   async ({
     id,
@@ -96,7 +95,6 @@ export const editScore = form(
     skillLevel,
     aestheticAppeal,
     judgesChoice,
-    comment
   }) => {
     const updated = await db
       .update(score)
@@ -107,7 +105,6 @@ export const editScore = form(
         skillLevel,
         aestheticAppeal,
         judgesChoice,
-        comment
       })
       .where(eq(score.id, id))
       .returning();

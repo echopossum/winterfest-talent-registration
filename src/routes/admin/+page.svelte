@@ -105,17 +105,67 @@
 		<div class="modal-box">
 			<h3 class="text-lg font-bold">Score Edit</h3>
 			<p>{talentHolding?.firstName}</p>
-			<form {...editScore}>
+			<form {...editScore} class="flex flex-col items-center justify-center">
+				<input {...editScore.fields.id.as('number')} value={scoreHolding?.id} hidden />
 				<fieldset class="fieldset">
-					<label class="label text-lg" for="firstName">*First Name:</label>
+					<label class="label text-lg" for="originality">Originality:</label>
 					<input
 						class="validator input w-md"
 						{...editScore.fields.originality.as('number')}
 						required
 						id="originality"
 					/>
-					<div class="validator-hint hidden">First Name is Required</div>
+					<div class="validator-hint hidden">Originality is required</div>
 				</fieldset>
+				<fieldset class="fieldset">
+					<label class="label text-lg" for="entertainment">Enterainment Value:</label>
+					<input
+						class="validator input w-md"
+						{...editScore.fields.entertainmentValue.as('number')}
+						required
+						id="entertainment"
+					/>
+					<div class="validator-hint hidden">Entertainment is required</div>
+				</fieldset>
+				<fieldset class="fieldset">
+					<label class="label text-lg" for="audience">Audience Appeal:</label>
+					<input
+						class="validator input w-md"
+						{...editScore.fields.audienceAppeal.as('number')}
+						required
+						id="audience"
+					/>
+					<div class="validator-hint hidden">Audience Appeal is required</div>
+				</fieldset>
+				<fieldset class="fieldset">
+					<label class="label text-lg" for="skill">Skill Level:</label>
+					<input
+						class="validator input w-md"
+						{...editScore.fields.skillLevel.as('number')}
+						required
+						id="skill"
+					/>
+					<div class="validator-hint hidden">Skill level is required</div>
+				</fieldset>
+				<fieldset class="fieldset">
+					<label class="label text-lg" for="aesthetic">Aesthetic Appeal:</label>
+					<input
+						class="validator input w-md"
+						{...editScore.fields.aestheticAppeal.as('number')}
+						required
+						id="aesthetic"
+					/>
+					<div class="validator-hint hidden">Aesthetic Appeal is required</div>
+				</fieldset>
+				<fieldset class="fieldset">
+					<label class="label text-lg" for="judgesChoice">Judges Choice:</label>
+					<input
+						class="validator input w-md"
+						{...editScore.fields.judgesChoice.as('number')}
+						id="judgesChoice"
+					/>
+				</fieldset>
+				<button class="btn mt-4 w-sm rounded-box btn-primary">Submit</button>
 			</form>
 			<div class="modal-action">
 				<form method="dialog">
@@ -130,7 +180,6 @@
 			<h3 class="text-lg font-bold">Are you sure you want to delete?</h3>
 			<p>{talentHolding?.firstName}</p>
 			<p>{talentHolding?.lastName}</p>
-			<p class="py-4">Press ESC key or click the button below to close</p>
 			<button
 				class="btn btn-soft btn-error"
 				onclick={() => {
