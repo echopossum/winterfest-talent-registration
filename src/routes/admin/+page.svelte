@@ -28,7 +28,7 @@
 
 <div class="flex h-screen w-screen flex-col bg-black">
 	{#each await getAdminView() as talent (talent.id)}
-		<div class="flex flex-col odd:bg-base-300 even:bg-base-100">
+		<div class="flex flex-col odd:bg-blue-950 even:bg-sky-800">
 			<div class="flex items-center justify-between">
 				<div class="flex items-center justify-center gap-6 p-2">
 					<p>Number: {talent.id}</p>
@@ -57,7 +57,7 @@
 		</div>
 		{#each talent.score as score (score.id)}
 			<div
-				class="flex items-center justify-start gap-4 p-0.5 pr-2 odd:bg-blue-950 even:bg-blue-600"
+				class="flex items-center justify-start gap-4 p-0.5 pr-2 odd:bg-base-300 even:bg-base-100"
 			>
 				<div class="w-8"></div>
 				<p>Originality: {score.originality}</p>
@@ -103,6 +103,7 @@
 	<dialog bind:this={scoreEditModal} class="modal">
 		<div class="modal-box">
 			<h3 class="text-lg font-bold">Score Edit</h3>
+			<p>{talentHolding?.firstName}</p>
 			<p class="py-4">Press ESC key or click the button below to close</p>
 			<div class="modal-action">
 				<form method="dialog">
