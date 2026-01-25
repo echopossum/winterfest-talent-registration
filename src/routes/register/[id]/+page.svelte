@@ -20,36 +20,12 @@
 	});
 </script>
 
-<div class="success-container">
-	<h1>Your contestant number is {number}</h1>
-	<p>You have successfully registered for the talent show.</p>
-	<p>Please remain in the area and proceed behind the stage when your number is called</p>
-	<p>Redirecting to registration in {countdown} seconds...</p>
+<div class="flex h-screen flex-col items-center justify-center p-8">
+	<h1 class="mb-8 text-4xl">Your contestant number is {number}</h1>
+	<p class="mb-4">You have successfully registered for the talent show.</p>
+	<p class="mb-4">
+		Please remain in the area and proceed behind the stage when your number is called
+	</p>
+	<p class="mb-8">Redirecting to registration in {countdown} seconds...</p>
 	<button class="btn btn-primary" onclick={() => goto(resolve('/'))}> Go Back Now </button>
 </div>
-
-<style>
-	.success-container {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		justify-content: center;
-		min-height: 100vh;
-		text-align: center;
-		padding: 2rem;
-	}
-
-	h1 {
-		font-size: 2.5rem;
-		margin-bottom: 1rem;
-	}
-
-	p {
-		font-size: 1.2rem;
-		margin-bottom: 0.5rem;
-	}
-
-	button {
-		margin-top: 2rem;
-	}
-</style>
