@@ -2,13 +2,16 @@ import { command, form, query } from '$app/server';
 import { db } from '$lib/server/db';
 import { registrant, score } from '$lib/server/db/schema';
 import { broadcast } from '$lib/server/events';
-import { eq } from 'drizzle-orm';
+import { eq, asc } from 'drizzle-orm';
 import * as v from 'valibot';
 
 export const getAdminView = query(async () => {
   const data = await db.query.registrant.findMany({
+    orderBy: asc(registrant.id),
     with: {
-      score: true
+      score: {
+        orderBy: asc(score.id)
+      }
     }
   });
 
@@ -33,8 +36,6 @@ export const editRegistrant = form(
     phoneNumber: v.optional(v.string()),
     unitType: v.optional(v.picklist(['Post', 'Crew', 'Ship', 'Troop', 'Other'])),
     unitNumber: v.optional(v.number()),
-    additionalMembers: v.optional(v.string()),
-    description: v.optional(v.string())
   }),
   async ({
     id,
@@ -44,8 +45,6 @@ export const editRegistrant = form(
     phoneNumber,
     unitType,
     unitNumber,
-    additionalMembers,
-    description
   }) => {
     const updated = await db
       .update(registrant)
@@ -56,13 +55,12 @@ export const editRegistrant = form(
         phoneNumber,
         unitType,
         unitNumber,
-        additionalMembers,
-        description
       })
       .where(eq(registrant.id, id))
       .returning();
 
     console.log(updated);
+    broadcast('refresh', {})
   }
 );
 
@@ -71,8 +69,7 @@ export const deleteScore = command(
     scoreId: v.number()
   }),
   async ({ scoreId }) => {
-    const deleted = await db.delete(score).where(eq(score.id, scoreId)).returning();
-    console.log(deleted);
+    await db.delete(score).where(eq(score.id, scoreId)).returning();
     broadcast('refresh', {})
   }
 );
@@ -96,7 +93,7 @@ export const editScore = form(
     aestheticAppeal,
     judgesChoice,
   }) => {
-    const updated = await db
+    await db
       .update(score)
       .set({
         originality,
@@ -108,8 +105,6 @@ export const editScore = form(
       })
       .where(eq(score.id, id))
       .returning();
-
-    console.log(updated);
     broadcast('refresh', {})
   }
 );

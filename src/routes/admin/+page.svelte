@@ -8,7 +8,7 @@
 		editScore
 	} from './admin.remote';
 	import { invalidateAll } from '$app/navigation';
-	import type { Registrant, Score } from '$lib/server/db/schema';
+	import { type Registrant, type Score } from '$lib/server/db/schema';
 
 	let editRegistrantModal: HTMLDialogElement;
 	let scoreEditModal: HTMLDialogElement;
@@ -21,6 +21,10 @@
 			invalidateAll();
 			editRegistrantModal.close();
 			scoreEditModal.close();
+			deleteRegistrantModal.close();
+			deleteScoreModal.close();
+			talentHolding = null;
+			scoreHolding = null;
 		});
 	});
 
@@ -92,11 +96,75 @@
 	<dialog bind:this={editRegistrantModal} class="modal">
 		<div class="modal-box">
 			<h3 class="text-lg font-bold">Registrant Edit</h3>
-			<p>{talentHolding?.firstName}</p>
-			<p class="py-4">Press ESC key or click the button below to close</p>
+			<p>{talentHolding?.firstName} {talentHolding?.lastName}</p>
+			<form {...editRegistrant} class="flex flex-col items-center justify-center">
+				<input {...editRegistrant.fields.id.as('number')} value={talentHolding?.id} hidden />
+				<fieldset class="fieldset">
+					<label class="label text-lg" for="firstName">First Name:</label>
+					<input
+						class="input w-md"
+						{...editRegistrant.fields.firstName.as('text')}
+						required
+						id="firstName"
+						value={talentHolding?.firstName}
+					/>
+				</fieldset>
+				<fieldset class="fieldset">
+					<label class="label text-lg" for="lastName">Last Name:</label>
+					<input
+						class="input w-md"
+						{...editRegistrant.fields.lastName.as('text')}
+						required
+						id="lastName"
+						value={talentHolding?.lastName}
+					/>
+				</fieldset>
+				<fieldset class="fieldset">
+					<label class="label text-lg" for="email">Email:</label>
+					<input
+						class="input w-md"
+						{...editRegistrant.fields.email.as('email')}
+						required
+						id="email"
+						value={talentHolding?.email}
+					/>
+				</fieldset>
+				<fieldset class="fieldset">
+					<label class="label text-lg" for="phone">Phone Number:</label>
+					<input
+						class="input w-md"
+						{...editRegistrant.fields.phoneNumber.as('tel')}
+						required
+						id="phone"
+						value={talentHolding?.phoneNumber}
+					/>
+				</fieldset>
+				<fieldset class="fieldset">
+					<label class="label text-lg" for="unitType">Unit Type:</label>
+					<select
+						class=" input w-md"
+						id="unitType"
+						{...editRegistrant.fields.unitType.as('select')}
+					>
+						{#each ['Post', 'Crew', 'Ship', 'Troop', 'Other'] as unit (unit)}
+							<option>{unit}</option>
+						{/each}
+					</select>
+				</fieldset>
+				<fieldset class="fieldset">
+					<label class="label text-lg" for="unitNumber">Unit Number:</label>
+					<input
+						class="input w-md"
+						{...editRegistrant.fields.unitNumber.as('number')}
+						required
+						id="unitNumber"
+						value={talentHolding?.unitNumber}
+					/>
+				</fieldset>
+				<button class="btn mt-4 w-sm rounded-box btn-primary">Submit</button>
+			</form>
 			<div class="modal-action">
 				<form method="dialog">
-					<!-- if there is a button in form, it will close the modal -->
 					<button class="btn">Close</button>
 				</form>
 			</div>
@@ -194,7 +262,6 @@
 			>
 			<div class="modal-action">
 				<form method="dialog">
-					<!-- if there is a button in form, it will close the modal -->
 					<button class="btn">Close</button>
 				</form>
 			</div>
