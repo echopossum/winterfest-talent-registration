@@ -71,6 +71,7 @@
 						class="btn btn-soft btn-xs btn-info"
 						onclick={() => {
 							scoreHolding = score;
+							talentHolding = talent;
 							scoreEditModal.showModal();
 						}}>Edit</button
 					>
@@ -104,10 +105,20 @@
 		<div class="modal-box">
 			<h3 class="text-lg font-bold">Score Edit</h3>
 			<p>{talentHolding?.firstName}</p>
-			<p class="py-4">Press ESC key or click the button below to close</p>
+			<form {...editScore}>
+				<fieldset class="fieldset">
+					<label class="label text-lg" for="firstName">*First Name:</label>
+					<input
+						class="validator input w-md"
+						{...editScore.fields.originality.as('number')}
+						required
+						id="originality"
+					/>
+					<div class="validator-hint hidden">First Name is Required</div>
+				</fieldset>
+			</form>
 			<div class="modal-action">
 				<form method="dialog">
-					<!-- if there is a button in form, it will close the modal -->
 					<button class="btn">Close</button>
 				</form>
 			</div>
@@ -125,6 +136,7 @@
 				onclick={() => {
 					if (!talentHolding) return;
 					deleteRegistrant({ registrantId: talentHolding.id });
+					scoreHolding = null;
 					talentHolding = null;
 					deleteRegistrantModal.close();
 				}}>DELETE</button
@@ -148,6 +160,7 @@
 					if (!scoreHolding) return;
 					deleteScore({ scoreId: scoreHolding.id });
 					scoreHolding = null;
+					talentHolding = null;
 					deleteScoreModal.close();
 				}}>DELETE</button
 			>
