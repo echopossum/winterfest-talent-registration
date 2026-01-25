@@ -80,12 +80,12 @@ export const deleteScore = command(
 export const editScore = form(
   v.object({
     id: v.number(),
-    originality: v.optional(v.number()),
-    entertainmentValue: v.optional(v.number()),
-    audienceAppeal: v.optional(v.number()),
-    skillLevel: v.optional(v.number()),
-    aestheticAppeal: v.optional(v.number()),
-    judgesChoice: v.optional(v.number()),
+    originality: v.optional(v.pipe(v.number(), v.integer(), v.minValue(1), v.maxValue(10))),
+    entertainmentValue: v.optional(v.pipe(v.number(), v.integer(), v.minValue(1), v.maxValue(10))),
+    audienceAppeal: v.optional(v.pipe(v.number(), v.integer(), v.minValue(1), v.maxValue(10))),
+    skillLevel: v.optional(v.pipe(v.number(), v.integer(), v.minValue(1), v.maxValue(10))),
+    aestheticAppeal: v.optional(v.pipe(v.number(), v.integer(), v.minValue(1), v.maxValue(10))),
+    judgesChoice: v.optional(v.pipe(v.number(), v.integer(), v.minValue(0), v.maxValue(5))),
   }),
   async ({
     id,
