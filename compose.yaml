@@ -15,7 +15,8 @@ services:
       interval: 5s
       retries: 30
   app:
-    build: .
+    image: echopossum/winterfest-talent-registration:latest
+    restart: always
     depends_on:
       db:
         condition: service_healthy
@@ -23,6 +24,7 @@ services:
       DATABASE_URL: postgres://root:mysecretpassword@db:5432/local
       HOST: 0.0.0.0
       PORT: 3000
+      ORIGIN: http://localhost:3000
     ports:
       - "3000:3000"
 volumes:
