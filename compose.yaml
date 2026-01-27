@@ -14,6 +14,15 @@ services:
       test: ["CMD-SHELL", "pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB"]
       interval: 5s
       retries: 30
+  migrate:
+    image: echopossum/winterfest-talent-registration:latest
+    environment:
+      DATABASE_URL: postgres://root:mysecretpassword@db:5432/local
+    depends_on:
+      db:
+        condition: service_healthy
+    command: npm run db:migrate
+    restart: no
   app:
     image: echopossum/winterfest-talent-registration:latest
     restart: always
