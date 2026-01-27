@@ -2,7 +2,7 @@
 	import { registerTalent } from './data.remote';
 </script>
 
-<div class="flex h-screen w-screen flex-col items-center justify-center gap-5">
+<div class="flex min-h-dvh w-full flex-col items-center justify-center gap-5">
 	<h1>Talent Show Reg</h1>
 	<form
 		class="fieldset flex w-lg flex-col items-center justify-center rounded-box bg-base-300 p-4"

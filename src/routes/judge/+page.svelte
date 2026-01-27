@@ -6,7 +6,7 @@
 	const judgesChoiceOptions = [0, 1, 2, 3, 4, 5];
 </script>
 
-<div class="flex h-screen w-screen flex-col items-center justify-center gap-5">
+<div class="flex min-h-dvh w-full flex-col items-center justify-center gap-5">
 	<h1>Talent Show Judging</h1>
 	<form
 		class="fieldset flex w-xl flex-col items-center justify-center rounded-box bg-base-300 p-4"

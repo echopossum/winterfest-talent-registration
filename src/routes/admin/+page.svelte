@@ -32,7 +32,7 @@
 	let scoreHolding = $state<Score | null>();
 </script>
 
-<div class="flex h-screen w-screen flex-col bg-black">
+<div class="flex min-h-dvh w-full flex-col bg-black">
 	{#each await getAdminView() as talent (talent.id)}
 		<div class="flex flex-col odd:bg-blue-950 even:bg-sky-800">
 			<div class="flex items-center justify-between">
