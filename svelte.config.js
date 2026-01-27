@@ -16,6 +16,7 @@ const config = {
       trustedOrigins: [
         'http://localhost:3000',
         'https://talent.bsawinterfest.show',
+        'https://test.bsawinterfest.show',
         'https://bsawinterfest.show'
       ]
     }
