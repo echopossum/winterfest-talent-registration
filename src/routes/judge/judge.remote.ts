@@ -2,6 +2,7 @@
 /*! 🌼 daisyUI 5.5.14 */
 /*! 🌼 daisyUI 5.5.14 */
 /*! 🌼 daisyUI 5.5.14 */
+/*! 🌼 daisyUI 5.5.14 */
 import { form } from '$app/server';
 import { db } from '$lib/server/db';
 import { score } from '$lib/server/db/schema';
@@ -19,41 +20,38 @@ export const scoreTalent = form(
 		),
 		comment: v.pipe(v.optional(v.string())),
 		originality: v.pipe(
-			v.picklist(
-				['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10'],
-				'Originality score required'
-			),
+			v.picklist(['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'], 'Originality score required'),
 			v.transform(Number),
 			v.integer(),
-			v.minValue(0),
+			v.minValue(1),
 			v.maxValue(10)
 		),
 		entertainmentValue: v.pipe(
-			v.picklist(['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10']),
+			v.picklist(['1', '2', '3', '4', '5', '6', '7', '8', '9', '10']),
 			v.transform(Number),
 			v.integer(),
-			v.minValue(0),
+			v.minValue(1),
 			v.maxValue(10)
 		),
 		audienceAppeal: v.pipe(
-			v.picklist(['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10']),
+			v.picklist(['1', '2', '3', '4', '5', '6', '7', '8', '9', '10']),
 			v.transform(Number),
 			v.integer(),
-			v.minValue(0),
+			v.minValue(1),
 			v.maxValue(10)
 		),
 		skillLevel: v.pipe(
-			v.picklist(['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10']),
+			v.picklist(['1', '2', '3', '4', '5', '6', '7', '8', '9', '10']),
 			v.transform(Number),
 			v.integer(),
-			v.minValue(0),
+			v.minValue(1),
 			v.maxValue(10)
 		),
 		aestheticAppeal: v.pipe(
-			v.picklist(['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10']),
+			v.picklist(['1', '2', '3', '4', '5', '6', '7', '8', '9', '10']),
 			v.transform(Number),
 			v.integer(),
-			v.minValue(0),
+			v.minValue(1),
 			v.maxValue(10)
 		),
 		judgesChoice: v.pipe(

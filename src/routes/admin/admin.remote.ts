@@ -1,4 +1,5 @@
 /*! 🌼 daisyUI 5.5.14 */
+/*! 🌼 daisyUI 5.5.14 */
 import { command, form, query } from '$app/server';
 import { db } from '$lib/server/db';
 import { registrant, score } from '$lib/server/db/schema';
@@ -70,11 +71,11 @@ export const deleteScore = command(
 export const editScore = form(
 	v.object({
 		id: v.number(),
-		originality: v.optional(v.pipe(v.number(), v.integer(), v.minValue(0), v.maxValue(10))),
-		entertainmentValue: v.optional(v.pipe(v.number(), v.integer(), v.minValue(0), v.maxValue(10))),
-		audienceAppeal: v.optional(v.pipe(v.number(), v.integer(), v.minValue(0), v.maxValue(10))),
-		skillLevel: v.optional(v.pipe(v.number(), v.integer(), v.minValue(0), v.maxValue(10))),
-		aestheticAppeal: v.optional(v.pipe(v.number(), v.integer(), v.minValue(0), v.maxValue(10))),
+		originality: v.optional(v.pipe(v.number(), v.integer(), v.minValue(1), v.maxValue(10))),
+		entertainmentValue: v.optional(v.pipe(v.number(), v.integer(), v.minValue(1), v.maxValue(10))),
+		audienceAppeal: v.optional(v.pipe(v.number(), v.integer(), v.minValue(1), v.maxValue(10))),
+		skillLevel: v.optional(v.pipe(v.number(), v.integer(), v.minValue(1), v.maxValue(10))),
+		aestheticAppeal: v.optional(v.pipe(v.number(), v.integer(), v.minValue(1), v.maxValue(10))),
 		judgesChoice: v.optional(v.pipe(v.number(), v.integer(), v.minValue(0), v.maxValue(5)))
 	}),
 	async ({
