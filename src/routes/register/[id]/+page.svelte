@@ -27,5 +27,5 @@
 		Please remain in the area and proceed behind the stage when your number is called
 	</p>
 	<p class="mb-8">Redirecting to registration in {countdown} seconds...</p>
-	<button class="btn btn-primary" onclick={() => goto(resolve('/'))}> Go Back Now </button>
+	<button class="btn btn-outline btn-info" onclick={() => goto(resolve('/'))}> Go Back Now </button>
 </div>

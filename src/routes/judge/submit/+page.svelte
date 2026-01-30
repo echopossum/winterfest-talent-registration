@@ -22,5 +22,7 @@
 	<h1 class="mb-8 text-4xl">Score Submitted</h1>
 	<p class="mb-4">You have successfully submitted your scores.</p>
 	<p class="mb-4">Redirecting to judging page in {countdown} seconds...</p>
-	<button class="btn btn-primary" onclick={() => goto(resolve('/judge'))}> Go Back Now </button>
+	<button class="btn btn-outline btn-info" onclick={() => goto(resolve('/judge'))}>
+		Go Back Now
+	</button>
 </div>
