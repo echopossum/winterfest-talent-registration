@@ -86,6 +86,7 @@
 				{...registerTalent.fields.description.as('text')}
 			></textarea>
 		</fieldset>
-		<button class="btn mt-4 w-2xs rounded-box btn-outline btn-info md:w-sm">Register</button>
+		<button class="btn mt-4 w-2xs rounded-box btn-outline btn-info md:w-sm lg:w-md">Register</button
+		>
 	</form>
 </div>
