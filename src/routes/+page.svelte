@@ -71,7 +71,7 @@
 		<fieldset class="fieldset">
 			<label class="label text-lg" for="additionalMembers">Additional Members:</label>
 			<textarea
-				class="input h-30 w-2xs resize-none md:w-md lg:min-w-lg"
+				class="input h-30 w-2xs resize-none text-wrap md:w-md lg:min-w-lg"
 				id="additionalMembers"
 				maxlength="150"
 				{...registerTalent.fields.additionalMembers.as('text')}
@@ -80,7 +80,7 @@
 		<fieldset class="fieldset">
 			<label class="label text-lg" for="description">Act Description:</label>
 			<textarea
-				class="input h-30 w-2xs resize-none md:w-md lg:w-lg"
+				class="input h-30 w-2xs resize-none text-wrap md:w-md lg:w-lg"
 				id="description"
 				maxlength="150"
 				{...registerTalent.fields.description.as('text')}
