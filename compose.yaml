@@ -11,30 +11,30 @@ services:
     volumes:
       - pgdata:/var/lib/postgresql
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB"]
+      test: ['CMD-SHELL', 'pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB']
       interval: 5s
       retries: 30
-  migrate:
-    image: echopossum/winterfest-talent-registration:latest
-    environment:
-      DATABASE_URL: postgres://root:mysecretpassword@db:5432/local
-    depends_on:
-      db:
-        condition: service_healthy
-    command: npm run db:migrate
-    restart: no
-  app:
-    image: echopossum/winterfest-talent-registration:latest
-    restart: always
-    depends_on:
-      db:
-        condition: service_healthy
-    environment:
-      DATABASE_URL: postgres://root:mysecretpassword@db:5432/local
-      HOST: 0.0.0.0
-      PORT: 3000
-      ORIGIN: https://talent.bsawinterfest.show
-    ports:
-      - "3000:3000"
+  # migrate:
+  #   image: echopossum/winterfest-talent-registration:latest
+  #   environment:
+  #     DATABASE_URL: postgres://root:mysecretpassword@db:5432/local
+  #   depends_on:
+  #     db:
+  #       condition: service_healthy
+  #   command: npm run db:migrate
+  #   restart: no
+  # app:
+  #   image: echopossum/winterfest-talent-registration:latest
+  #   restart: always
+  #   depends_on:
+  #     db:
+  #       condition: service_healthy
+  #   environment:
+  #     DATABASE_URL: postgres://root:mysecretpassword@db:5432/local
+  #     HOST: 0.0.0.0
+  #     PORT: 3000
+  #     ORIGIN: https://talent.bsawinterfest.show
+  #   ports:
+  #     - "3000:3000"
 volumes:
   pgdata:
