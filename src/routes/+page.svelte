@@ -63,10 +63,12 @@
 		<fieldset class="fieldset">
 			<label class="label text-lg" for="unitNumber">Unit Number:</label>
 			<input
-				class=" input w-2xs md:w-md lg:w-lg"
+				class="validator input w-2xs md:w-md lg:w-lg"
 				{...registerTalent.fields.unitNumber.as('number')}
 				id="unitNumber"
+				required
 			/>
+			<div class="validator-hint hidden">Unit Number is Required</div>
 		</fieldset>
 		<fieldset class="fieldset">
 			<label class="label text-lg" for="additionalMembers">Additional Members:</label>
