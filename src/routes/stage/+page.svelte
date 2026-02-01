@@ -16,7 +16,7 @@
 	<div class="flex min-h-dvh w-full flex-col items-center justify-start bg-black">
 		{#each await getStageView() as slot (slot.id)}
 			<div
-				class="flex w-screen items-center justify-between transition-opacity odd:bg-base-300 even:bg-base-100"
+				class="flex w-screen items-center justify-between transition-opacity odd:bg-base-100 even:bg-base-300"
 				class:opacity-60={slot.performed}
 			>
 				<div

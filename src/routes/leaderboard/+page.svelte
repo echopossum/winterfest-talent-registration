@@ -20,7 +20,7 @@
 <svelte:boundary>
 	<div class="flex min-h-dvh w-full flex-col items-center justify-start bg-black">
 		{#each await getLeaderboard() as slot (slot.id)}
-			<div class="flex w-screen items-center justify-between odd:bg-base-300 even:bg-base-100">
+			<div class="flex w-screen items-center justify-between odd:bg-base-100 even:bg-base-300">
 				<div class="flex w-sm justify-start p-2 pl-8 text-2xl">
 					Name:
 					{slot.firstName}
