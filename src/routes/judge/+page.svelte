@@ -31,7 +31,7 @@
 
 		<ScoreField
 			title="Originality/Creativity"
-			description={['Have I encounterd this kind of act before?', 'Is the content original?']}
+			description={['Have I encountered this kind of act before?', 'Is the content original?']}
 			remote={scoreTalent}
 			field="originality"
 			{options}
