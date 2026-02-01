@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { getRegistrants } from '../data.remote';
 	import { scoreTalent } from './judge.remote';
+	import ScoreField from '$lib/components/Score-Field.svelte';
 	const registrants = await getRegistrants();
 	const options = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 	const judgesChoiceOptions = [0, 1, 2, 3, 4, 5];
@@ -27,120 +28,67 @@
 			</select>
 		</fieldset>
 		<div class="divider"></div>
-		<fieldset class="fieldset pr-4 pl-4 sm:pr-0 sm:pl-0">
-			<legend class="label pb-2 text-lg">Originality/Creativity</legend>
-			<label class="label text-xs" for="originality"
-				>Have I encountered this sort of act before?</label
-			>
-			<label class="label pb-2 text-xs" for="originality">Is the content original?</label>
-			<div class="flex w-2xs flex-wrap justify-center gap-3 md:w-md md:gap-6 lg:w-lg">
-				{#each options as n (n)}
-					<div class="flex flex-col items-center justify-center">
-						<p class="mb-1">{n}</p>
-						<input
-							required
-							class="radio radio-xs radio-info lg:radio-sm"
-							{...scoreTalent.fields.originality.as('radio', String(n))}
-						/>
-					</div>
-				{/each}
-			</div>
-		</fieldset>
+
+		<ScoreField
+			title="Originality/Creativity"
+			description={['Have I encounterd this kind of act before?', 'Is the content original?']}
+			remote={scoreTalent}
+			field="originality"
+			{options}
+		/>
 		<div class="divider"></div>
-		<fieldset class="fieldset pr-4 pl-4">
-			<legend class="label pb-2 text-lg">Entertainment Value</legend>
-			<label class="label text-xs" for="entertainmentValue">Does this act interest me?</label>
-			<label class="label pb-2 text-xs" for="entertainmentValue"
-				>Does this act keep me entertained until the end?</label
-			>
-			<div class="flex w-2xs flex-wrap justify-center gap-3 md:w-md md:gap-6 lg:w-lg">
-				{#each options as n (n)}
-					<div class="flex flex-col items-center justify-center">
-						<p class="mb-1">{n}</p>
-						<input
-							required
-							class="radio radio-xs radio-info lg:radio-sm"
-							{...scoreTalent.fields.entertainmentValue.as('radio', String(n))}
-						/>
-					</div>
-				{/each}
-			</div>
-		</fieldset>
+
+		<ScoreField
+			title="Entertainment Value"
+			description={[
+				'Does this act interest me?',
+				'Does this act keep me entertained until the end?'
+			]}
+			remote={scoreTalent}
+			field="entertainmentValue"
+			{options}
+		/>
+
 		<div class="divider"></div>
-		<fieldset class="fieldset pr-4 pl-4">
-			<legend class="label pb-2 text-lg">Audience Appeal</legend>
-			<label class="label pb-2 text-xs" for="audienceAppeal"
-				>Did/will this act generate a positive response?</label
-			>
-			<div class="flex w-2xs flex-wrap justify-center gap-3 md:w-md md:gap-6 lg:w-lg">
-				{#each options as n (n)}
-					<div class="flex flex-col items-center justify-center">
-						<p class="mb-1">{n}</p>
-						<input
-							required
-							class="radio radio-xs radio-info lg:radio-sm"
-							{...scoreTalent.fields.audienceAppeal.as('radio', String(n))}
-						/>
-					</div>
-				{/each}
-			</div>
-		</fieldset>
+
+		<ScoreField
+			title="Audience Appeal"
+			description={['Did/will this act generate a positive response?']}
+			remote={scoreTalent}
+			field="audienceAppeal"
+			{options}
+		/>
+
 		<div class="divider"></div>
-		<fieldset class="fieldset pr-4 pl-4">
-			<legend class="label pb-2 text-lg">Skill Level</legend>
-			<label class="label pb-2 text-xs" for="skillLevel"
-				>Could the average scout/explorer perform this act?</label
-			>
-			<div class="flex w-2xs flex-wrap justify-center gap-3 md:w-md md:gap-6 lg:w-lg">
-				{#each options as n (n)}
-					<div class="flex flex-col items-center justify-center">
-						<p class="mb-1">{n}</p>
-						<input
-							required
-							class="radio radio-xs radio-info lg:radio-sm"
-							{...scoreTalent.fields.skillLevel.as('radio', String(n))}
-						/>
-					</div>
-				{/each}
-			</div>
-		</fieldset>
+
+		<ScoreField
+			title="Skill Level"
+			description={['Could the average scout/explorer perform this act?']}
+			remote={scoreTalent}
+			field="skillLevel"
+			{options}
+		/>
+
 		<div class="divider"></div>
-		<fieldset class="fieldset pr-4 pl-4">
-			<legend class="label pb-2 text-lg">Aesthetic Appeal</legend>
-			<label class="label pb-2 text-xs" for="aestheticAppeal"
-				>Did this act appeal visually in addition to aurally?</label
-			>
-			<div class="flex w-2xs flex-wrap justify-center gap-3 md:w-md md:gap-6 lg:w-lg">
-				{#each options as n (n)}
-					<div class="flex flex-col items-center justify-center">
-						<p class="mb-1">{n}</p>
-						<input
-							required
-							class="radio radio-xs radio-info lg:radio-sm"
-							{...scoreTalent.fields.aestheticAppeal.as('radio', String(n))}
-						/>
-					</div>
-				{/each}
-			</div>
-		</fieldset>
+
+		<ScoreField
+			title="Aesthetic Appeal"
+			description={['Did this act appeal visually in addition to aurally?']}
+			remote={scoreTalent}
+			field="aestheticAppeal"
+			{options}
+		/>
+
 		<div class="divider"></div>
-		<fieldset class="fieldset pr-4 pl-4">
-			<legend class="label pb-2 text-lg">Bonus-Judges Choice</legend>
-			<label class="label pb-2 text-xs" for="judgesChoice"
-				>Something about this act made it special</label
-			>
-			<div class="flex w-2xs flex-wrap justify-center gap-3 md:w-md md:gap-6 lg:w-lg">
-				{#each judgesChoiceOptions as n (n)}
-					<div class="flex flex-col items-center justify-center">
-						<p class="mb-1">{n}</p>
-						<input
-							class="radio radio-xs radio-info lg:radio-sm"
-							{...scoreTalent.fields.judgesChoice.as('radio', String(n))}
-						/>
-					</div>
-				{/each}
-			</div>
-		</fieldset>
+
+		<ScoreField
+			title="Bonus-Judges Choice"
+			description={['Something about this act made it special']}
+			remote={scoreTalent}
+			field="judgesChoice"
+			options={judgesChoiceOptions}
+		/>
+
 		<fieldset class="fieldset pr-4 pl-4">
 			<label class="label text-lg" for="description">Judges Notes:</label>
 			<textarea
