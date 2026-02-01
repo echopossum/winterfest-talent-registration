@@ -7,16 +7,16 @@
 	const judgesChoiceOptions = [0, 1, 2, 3, 4, 5];
 </script>
 
-<div class="flex min-h-dvh w-full flex-col items-center justify-center gap-5">
+<div class="flex min-h-dvh w-full flex-col items-center justify-center gap-5 bg-base-100">
 	<h1 class="mt-4 text-2xl">Talent Show Judging</h1>
 	<form
 		class="fieldset flex w-xs flex-col items-center justify-center rounded-box bg-base-300 p-4 sm:w-sm md:w-lg lg:w-xl"
 		{...scoreTalent}
 	>
 		<fieldset class="fieldset">
-			<label class="label text-lg" for="participant">Participant:</label>
+			<label class="label text-lg text-white" for="participant">Participant:</label>
 			<select
-				class=" input w-2xs md:w-md lg:w-lg"
+				class=" input w-2xs bg-base-100 md:w-md lg:w-lg"
 				id="participant"
 				{...scoreTalent.fields.participant.as('select')}
 			>
@@ -93,7 +93,7 @@
 		<fieldset class="fieldset pr-4 pl-4">
 			<label class="label text-lg" for="description">Judges Notes:</label>
 			<textarea
-				class="input h-20 w-2xs resize-none md:w-md lg:w-lg"
+				class="input h-20 w-2xs resize-none bg-base-100 md:w-md lg:w-lg"
 				id="description"
 				maxlength="150"
 				{...scoreTalent.fields.comment.as('text')}

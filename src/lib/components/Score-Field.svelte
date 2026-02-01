@@ -10,9 +10,9 @@
 </script>
 
 <fieldset class="fieldset pr-4 pl-4 sm:pr-0 sm:pl-0">
-	<legend class="label pb-2 text-lg">{title}</legend>
+	<legend class="label pb-2 text-lg text-white">{title}</legend>
 	{#each description as line}
-		<label class="label text-xs" for="originality">{line}</label>
+		<label class="label text-xs text-white" for="originality">{line}</label>
 	{/each}
 	<div class="mt-2 flex w-2xs flex-wrap justify-center gap-3 md:w-md md:gap-6 lg:w-lg">
 		{#each options as n (n)}
