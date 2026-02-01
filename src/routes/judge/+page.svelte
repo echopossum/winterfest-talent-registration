@@ -87,6 +87,7 @@
 			remote={scoreTalent}
 			field="judgesChoice"
 			options={judgesChoiceOptions}
+			required={false}
 		/>
 
 		<fieldset class="fieldset pr-4 pl-4">

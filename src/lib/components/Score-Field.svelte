@@ -1,5 +1,12 @@
 <script lang="ts">
-	let { title, description, remote, field, options = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] } = $props();
+	let {
+		title,
+		description,
+		remote,
+		field,
+		options = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+		required = true
+	} = $props();
 </script>
 
 <fieldset class="fieldset pr-4 pl-4 sm:pr-0 sm:pl-0">
@@ -12,7 +19,7 @@
 			<div class="flex flex-col items-center justify-center">
 				<p class="mb-1">{n}</p>
 				<input
-					required
+					{required}
 					class="radio radio-xs radio-info lg:radio-sm"
 					{...remote.fields[field].as('radio', String(n))}
 				/>
