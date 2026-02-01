@@ -3,7 +3,7 @@
 </script>
 
 <div class="flex min-h-dvh w-full flex-col items-center justify-center gap-5">
-	<h1>Talent Show Reg</h1>
+	<h1 class="mt-4 text-2xl">Talent Show Registration</h1>
 	<form
 		class="fieldset flex w-xs flex-col items-center justify-center rounded-box bg-base-300 p-4 md:w-lg lg:w-xl"
 		{...registerTalent}
