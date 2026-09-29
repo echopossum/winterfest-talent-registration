@@ -1,6 +1,8 @@
 <script lang="ts">
 	import { page } from '$app/state';
 	import { login } from './login.remote';
+
+	const redirectTo = $derived(page.url.searchParams.get('redirectTo'));
 </script>
 
 <div class="flex min-h-dvh w-full flex-col items-center justify-center gap-5 bg-base-100">
@@ -9,9 +11,9 @@
 		class="fieldset flex w-xs flex-col items-center justify-center rounded-box bg-base-300 p-4 sm:w-sm"
 		{...login}
 	>
-		<input
-			{...login.fields.redirectTo.as('hidden', page.url.searchParams.get('redirectTo') ?? '')}
-		/>
+		{#if redirectTo}
+			<input {...login.fields.redirectTo.as('hidden', redirectTo)} />
+		{/if}
 		<fieldset class="fieldset">
 			<label class="label text-lg" for="email">Email:</label>
 			<input
