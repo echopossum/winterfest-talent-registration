@@ -2,7 +2,7 @@
 	import { onMount } from 'svelte';
 
 	import { invalidateAll } from '$app/navigation';
-	import { getStageView } from '../stage/stage.remote';
+	import { getWaitlist } from './waitlist.remote';
 
 	onMount(() => {
 		const eventSource = new EventSource('/api/events');
@@ -14,7 +14,7 @@
 
 <svelte:boundary>
 	<div class="flex min-h-dvh w-full flex-col items-center justify-start bg-black">
-		{#each await getStageView() as slot (slot.id)}
+		{#each await getWaitlist() as slot (slot.id)}
 			<div
 				class="flex w-screen items-center justify-center p-4 transition-opacity odd:bg-base-100 even:bg-base-300"
 				class:opacity-20={slot.performed}

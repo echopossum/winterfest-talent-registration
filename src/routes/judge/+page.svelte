@@ -1,8 +1,7 @@
 <script lang="ts">
-	import { getRegistrants } from '../data.remote';
-	import { scoreTalent } from './judge.remote';
+	import { getJudgeRegistrants, scoreTalent } from './judge.remote';
 	import ScoreField from '$lib/components/Score-Field.svelte';
-	const registrants = await getRegistrants();
+	const registrants = await getJudgeRegistrants();
 	const options = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 	const judgesChoiceOptions = [0, 1, 2, 3, 4, 5];
 </script>

@@ -16,7 +16,8 @@
 		"db:push": "drizzle-kit push",
 		"db:generate": "drizzle-kit generate",
 		"db:migrate": "drizzle-kit migrate",
-		"db:studio": "drizzle-kit studio"
+		"db:studio": "drizzle-kit studio",
+		"auth:create-admin": "node --env-file=.env scripts/create-admin.ts"
 	},
 	"devDependencies": {
 		"@eslint/compat": "^1.4.0",
@@ -28,6 +29,7 @@
 		"@tailwindcss/typography": "^0.5.19",
 		"@tailwindcss/vite": "^4.1.17",
 		"@types/node": "^22",
+		"drizzle-kit": "^0.31.8",
 		"drizzle-orm": "^0.45.0",
 		"eslint": "^9.39.1",
 		"eslint-config-prettier": "^10.1.8",
@@ -42,10 +44,10 @@
 		"typescript": "^5.9.3",
 		"typescript-eslint": "^8.48.1",
 		"vite": "^7.2.6",
-		"vite-plugin-devtools-json": "^1.0.0",
-		"drizzle-kit": "^0.31.8"
+		"vite-plugin-devtools-json": "^1.0.0"
 	},
 	"dependencies": {
+		"better-auth": "^1.7.6",
 		"daisyui": "^5.5.14",
 		"postgres": "^3.4.7",
 		"valibot": "^1.2.0"

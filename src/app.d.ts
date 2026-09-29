@@ -3,7 +3,10 @@
 declare global {
 	namespace App {
 		// interface Error {}
-		// interface Locals {}
+		interface Locals {
+			user?: typeof import('$lib/server/auth').auth.$Infer.Session.user;
+			session?: typeof import('$lib/server/auth').auth.$Infer.Session.session;
+		}
 		// interface PageData {}
 		// interface PageState {}
 		// interface Platform {}

@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { resolve } from '$app/paths';
 	import { onMount } from 'svelte';
 	import {
 		getAdminView,
@@ -33,6 +34,9 @@
 </script>
 
 <div class="flex min-h-dvh w-full flex-col bg-black">
+	<div class="flex justify-end p-2">
+		<a class="btn btn-outline btn-sm" href={resolve('/admin/users')}>Manage staff accounts</a>
+	</div>
 	{#each await getAdminView() as talent (talent.id)}
 		<div class="flex flex-col odd:bg-blue-950 even:bg-sky-800">
 			<div class="flex items-center justify-between">
@@ -66,6 +70,7 @@
 				class="flex items-center justify-start gap-4 p-0.5 pr-2 odd:bg-base-300 even:bg-base-100"
 			>
 				<div class="w-8"></div>
+				<p class="w-28 truncate" title="Judge">{score.judge?.name ?? 'Unknown judge'}</p>
 				<p>Originality: {score.originality}</p>
 				<p>Entertainment: {score.entertainmentValue}</p>
 				<p>Audience Appeal: {score.audienceAppeal}</p>

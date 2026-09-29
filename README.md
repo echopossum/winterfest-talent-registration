@@ -1,38 +1,41 @@
-# sv
+# Winterfest Talent Show
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+Talent-show app for BSA Winterfest. Contestants register, judges score their acts, a stage manager marks who has performed, and a live leaderboard and waitlist update in real time.
 
-## Creating a project
+Registration, `/waitlist` and `/leaderboard` are public. `/judge`, `/stage` and `/admin` require a login.
 
-If you're seeing this, you've probably already done this step. Congrats!
+Built with SvelteKit, PostgreSQL (Drizzle) and Better Auth.
 
-```sh
-# create a new project in the current directory
-npx sv create
+## Requirements
 
-# create a new project in my-app
-npx sv create my-app
-```
+- Node 22.18 or newer
+- Docker (for Postgres)
 
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+## Run it locally
 
 ```sh
+npm install
+cp .env.example .env        # then set BETTER_AUTH_SECRET (openssl rand -base64 32)
+npm run db:start            # Postgres in Docker
+npm run db:migrate
+npm run auth:create-admin -- --email you@example.com --name "Your Name" --password "10+ characters"
 npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
 ```
 
-## Building
+Log in at `/login` with the admin you just created. There is no public sign-up. Create judge accounts at `/admin/users`.
 
-To create a production version of your app:
+## Environment variables
 
-```sh
-npm run build
-```
+| Variable             | Purpose                                                                   |
+| -------------------- | ------------------------------------------------------------------------- |
+| `DATABASE_URL`       | Postgres connection string                                                |
+| `BETTER_AUTH_SECRET` | Random string, 32+ characters, used to sign sessions                      |
+| `BETTER_AUTH_URL`    | Origin the app is served from (`http://localhost:5173` for `npm run dev`) |
 
-You can preview the production build with `npm run preview`.
+## Deploy
 
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+- Build the Docker image and run it with `DATABASE_URL`, `BETTER_AUTH_SECRET`, `BETTER_AUTH_URL`, `ORIGIN`, `HOST` and `PORT`. `BETTER_AUTH_URL` and `ORIGIN` are both the public https origin. See the commented-out `app` and `migrate` services in [compose.yaml](compose.yaml).
+- Put it behind a reverse proxy that terminates TLS, forwards `Host`, sets `X-Forwarded-For`, and does not buffer `/api/events` (the live-update stream).
+- Run migrations and create the first admin before first use. Run a single app instance, because live updates are held in memory.
+
+See [CLAUDE.md](CLAUDE.md) for architecture and conventions.

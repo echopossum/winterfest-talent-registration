@@ -1,20 +1,9 @@
-import { form, query } from '$app/server';
+import { form } from '$app/server';
 import { db } from '$lib/server/db';
 import { registrant } from '$lib/server/db/schema';
 import { broadcast } from '$lib/server/events';
 import { error, redirect } from '@sveltejs/kit';
 import * as v from 'valibot';
-import { asc } from 'drizzle-orm';
-
-export const getRegistrants = query(async () => {
-	const results = await db.select().from(registrant).orderBy(asc(registrant.id));
-	return results;
-});
-
-export const getActs = query(async () => {
-	const acts = await db.query.score.findMany();
-	return acts;
-});
 
 export const registerTalent = form(
 	v.object({
