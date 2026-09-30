@@ -79,7 +79,7 @@
 				<p class="w-32 grow">Judges Choice: {score.judgesChoice}</p>
 				<div class="flex justify-center gap-2 p-0.5">
 					<button
-						class="btn btn-soft btn-xs btn-info"
+						class="btn btn-soft btn-info btn-xs"
 						onclick={() => {
 							scoreHolding = score;
 							talentHolding = talent;
@@ -87,7 +87,7 @@
 						}}>Edit</button
 					>
 					<button
-						class="btn btn-soft btn-xs btn-error"
+						class="btn btn-soft btn-error btn-xs"
 						onclick={() => {
 							scoreHolding = score;
 							deleteScoreModal.showModal();

@@ -78,8 +78,7 @@
 					class="input h-30 w-2xs resize-none text-wrap md:w-md lg:min-w-lg"
 					id="additionalMembers"
 					maxlength="150"
-					{...registerTalent.fields.additionalMembers.as('text')}
-				></textarea>
+					{...registerTalent.fields.additionalMembers.as('text')}></textarea>
 			</fieldset>
 			<fieldset class="fieldset">
 				<label class="label text-lg" for="description">Act Description:</label>
@@ -87,8 +86,7 @@
 					class="input h-30 w-2xs resize-none text-wrap md:w-md lg:w-lg"
 					id="description"
 					maxlength="150"
-					{...registerTalent.fields.description.as('text')}
-				></textarea>
+					{...registerTalent.fields.description.as('text')}></textarea>
 			</fieldset>
 			<button class="btn mt-4 w-2xs rounded-box btn-outline btn-info md:w-sm lg:w-md"
 				>Register</button

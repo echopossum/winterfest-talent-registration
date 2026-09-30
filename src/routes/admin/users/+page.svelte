@@ -99,19 +99,19 @@
 						<td>{u.banned ? 'Disabled' : 'Active'}</td>
 						<td class="flex gap-2">
 							<button
-								class="btn btn-soft btn-xs btn-info"
+								class="btn btn-soft btn-info btn-xs"
 								onclick={() => {
 									selected = u;
 									passwordModal.showModal();
 								}}>Reset password</button
 							>
 							<button
-								class="btn btn-soft btn-xs btn-warning"
+								class="btn btn-soft btn-warning btn-xs"
 								onclick={() => act(() => setUserBanned({ userId: u.id, banned: !u.banned }))}
 								>{u.banned ? 'Enable' : 'Disable'}</button
 							>
 							<button
-								class="btn btn-soft btn-xs btn-error"
+								class="btn btn-soft btn-error btn-xs"
 								onclick={() => {
 									selected = u;
 									deleteModal.showModal();

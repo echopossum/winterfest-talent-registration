@@ -95,8 +95,7 @@
 				class="input h-20 w-2xs resize-none bg-base-100 md:w-md lg:w-lg"
 				id="description"
 				maxlength="150"
-				{...scoreTalent.fields.comment.as('text')}
-			></textarea>
+				{...scoreTalent.fields.comment.as('text')}></textarea>
 		</fieldset>
 		<button class="btn mt-4 w-3xs rounded-box btn-outline btn-info md:w-sm lg:w-md">Submit</button>
 	</form>

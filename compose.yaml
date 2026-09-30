@@ -1,6 +1,6 @@
 services:
   db:
-    image: postgres
+    image: postgres:18
     restart: always
     ports:
       # Loopback only, for local dev. Do not publish Postgres on a public host.

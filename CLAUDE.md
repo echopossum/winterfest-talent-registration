@@ -25,7 +25,7 @@ npm run db:studio
 npm run auth:create-admin -- --email you@example.com --name "Name" --password "10+ chars"   # first admin
 ```
 
-There is no test suite. Copy `.env.example` to `.env` for `DATABASE_URL`, `BETTER_AUTH_SECRET` and `BETTER_AUTH_URL`; `src/lib/server/db/index.ts` and `src/lib/server/auth.ts` throw at startup if they are unset. `auth:create-admin` uses Node's built-in TypeScript stripping, so it needs Node 22.18+ (the Dockerfile's Node 20 can't run it; run it from the dev machine against the DB).
+There is no test suite. Copy `.env.example` to `.env` for `DATABASE_URL`, `BETTER_AUTH_SECRET` and `BETTER_AUTH_URL`; `src/lib/server/db/index.ts` and `src/lib/server/auth.ts` throw at startup if they are unset. `auth:create-admin` uses Node's built-in TypeScript stripping, so it needs Node 22.18+ (the project requires Node 24 via `engines`; the runtime image doesn't ship `scripts/`, so run it from the dev machine against the DB).
 
 ## Architecture
 
@@ -42,6 +42,7 @@ There is no test suite. Copy `.env.example` to `.env` for `DATABASE_URL`, `BETTE
 - `src/routes/api/events/+server.ts` - the SSE stream (the only plain endpoint besides Better Auth's `/api/auth/*`)
 
 **Real-time updates via SSE.** `src/lib/server/events.ts` keeps an in-memory `Set` of connected SSE controllers; `broadcast(event, data)` writes to all of them. `/api/events` registers each client and sends a ping every 10s. Pages (`waitlist`, `stage`, `leaderboard`, `admin`) open an `EventSource('/api/events')` and re-fetch on a named event. Two event names are used:
+
 - `refresh` - scores or registrants changed (leaderboard, admin)
 - `stageRefresh` - performed status or the registrant list changed (stage, waitlist)
 
@@ -62,6 +63,6 @@ Better Auth, email + password only, with the `admin` plugin (`src/lib/server/aut
 - **Behind a reverse proxy:** set `ORIGIN` and `BETTER_AUTH_URL` to the public https origin. Better Auth reads the client IP from `X-Forwarded-For` (`advanced.ipAddress.ipAddressHeaders`) for its login rate limiting, so the proxy must set that header.
 - **Duplicate registration** surfaces the Postgres error `detail` as an HTTP 409 (`registerTalent`).
 - **Unit types** (`Post`, `Crew`, `Ship`, `Troop`, `Other`) are hard-coded in both the registration form (`src/routes/+page.svelte`) and the admin edit validator (`admin.remote.ts`).
-- **Deployment:** the Dockerfile builds with Node 20 and runs `node build` on port 3000. The app runs with `ORIGIN`, `HOST`, `PORT`, `BETTER_AUTH_URL` and `BETTER_AUTH_SECRET` set (see the commented-out `app` and `migrate` services in `compose.yaml`). The compose `db` service only binds Postgres to `127.0.0.1`; keep it off public interfaces. Migrations are a separate step (`npm run db:migrate`).
+- **Deployment:** the Dockerfile builds with Node 24 and runs `node build` on port 3000. The app runs with `ORIGIN`, `HOST`, `PORT`, `BETTER_AUTH_URL` and `BETTER_AUTH_SECRET` set (see the commented-out `app` and `migrate` services in `compose.yaml`). The compose `db` service only binds Postgres to `127.0.0.1`; keep it off public interfaces. Migrations are a separate step (`npm run db:migrate`).
 - **Formatting:** tabs, prettier with the svelte and tailwind plugins. Styling is Tailwind 4 with daisyUI classes.
 - `README.md` is the unmodified `sv create` template and has no project-specific information.
